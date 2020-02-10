@@ -29,6 +29,7 @@ class ListIterator:
 class List:
     def __init__(self, *args):
         self.__head = None
+        self.__tail = None
         for value in args:
             self.__add(value)
 
@@ -36,10 +37,7 @@ class List:
         return ListIterator(self)
 
     def __str__(self):
-        result = ''
-        for item in self:
-            result = str(item) + result
-        return result
+        return " ".join(map(str, self))
 
     def __add(self, value):
         temp = NodeItem(value)
@@ -56,10 +54,17 @@ class List:
     def print(self):
         print(self)
 
+    def print_reversed(self):
+        reversed = List()
+        for item in self:
+            reversed.__add(item)
+        print(reversed)
+
 
 def main():
     a = List(1, 2, 3)
     a.print()
+    a.print_reversed()
 
     # a.append(4, 5)
     # a.print()
