@@ -7,3 +7,4 @@ class TntPremierPromocodesTestCase(unittest.TestCase):
 
     def tearDown(self):
         pass
+
