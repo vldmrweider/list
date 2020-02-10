@@ -39,6 +39,11 @@ class List:
     def __str__(self):
         return " ".join(map(str, self))
 
+    def __iadd__(self, other):
+        for item in other:
+            self.__add(item)
+        return self
+
     def __add(self, value):
         temp = NodeItem(value)
         temp.set_next(self.__head)
@@ -51,10 +56,10 @@ class List:
         for value in args:
             self.__add(value)
 
-    def print(self):
+    def print_reversed(self):
         print(self)
 
-    def print_reversed(self):
+    def print(self):
         reversed = List()
         for item in self:
             reversed.__add(item)
@@ -63,11 +68,22 @@ class List:
 
 def main():
     a = List(1, 2, 3)
+    a.append(4, 5)
     a.print()
     a.print_reversed()
 
-    # a.append(4, 5)
-    # a.print()
+    b = List(7, 8)
+    b.print()
+
+    a += b
+    a += [9, 10]
+    a.print()
+
+    d = List()
+    d.print()
+
+    e = List(None)
+    e.print()
 
 
 if __name__ == "__main__":
