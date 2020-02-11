@@ -1,16 +1,16 @@
 class NodeItem:
     def __init__(self, value):
         self.value = value
-        self.next = None
+        self.next_item = None
 
     def get(self):
         return self.value
 
     def get_next(self):
-        return self.next
+        return self.next_item
 
-    def set_next(self, next):
-        self.next = next
+    def set_next(self, next_item):
+        self.next_item = next_item
 
 
 class ListIterator:
@@ -40,6 +40,8 @@ class List:
         return " ".join(map(str, self))
 
     def __iadd__(self, other):
+        if type(other) == List:
+            other = self.get_normal_order(other)
         for item in other:
             self.__add(item)
         return self
@@ -48,6 +50,13 @@ class List:
         temp = NodeItem(value)
         temp.set_next(self.__head)
         self.__head = temp
+
+    @staticmethod
+    def get_normal_order(list_instance):
+        temp_list = List()
+        for item in list_instance:
+            temp_list.__add(item)
+        return temp_list
 
     def get_head(self):
         return self.__head
@@ -60,31 +69,4 @@ class List:
         print(self)
 
     def print(self):
-        reversed = List()
-        for item in self:
-            reversed.__add(item)
-        print(reversed)
-
-
-def main():
-    a = List(1, 2, 3)
-    a.append(4, 5)
-    a.print()
-    a.print_reversed()
-
-    b = List(7, 8)
-    b.print()
-
-    a += b
-    a += [9, 10]
-    a.print()
-
-    d = List()
-    d.print()
-
-    e = List(None)
-    e.print()
-
-
-if __name__ == "__main__":
-    main()
+        print(self.get_normal_order(self))

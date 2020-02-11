@@ -1,5 +1,4 @@
 .idea
-GeoIP2-City.mmdb
 venv
 *.ini
 *.swp
